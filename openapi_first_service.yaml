@@ -4,7 +4,6 @@ info:
   version: 1.0.11
 servers:
   - url: http://spacemarine.swagger.io
-  - url: http://spacemarine.swagger.io/starship
 tags:
   - name: SpaceMarine
     description: default operations with collection of SpaceMarine
@@ -15,8 +14,6 @@ paths:
         - SpaceMarine
       summary: Update an existing SpaceMarine
       description: Update an existing SpaceMarine by Id
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: updateSpaceMarine
       requestBody:
         description: Update an existent SpaceMarine in the collection
@@ -43,8 +40,6 @@ paths:
         - SpaceMarine
       summary: Add a new SpaceMarine
       description: Add a new SpaceMarine
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: addSpaceMarine
       requestBody:
         description: Create a new SpaceMarine in the collection
@@ -68,8 +63,6 @@ paths:
         - SpaceMarine
       summary: Delete SpaceMarine by ID.
       description: Delete SpaceMarine by ID.
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: deleteSpaceMarineById
       parameters:
         - name: id
@@ -96,8 +89,6 @@ paths:
         - SpaceMarine
       summary: Gets a SpaceMarine by ID.
       description: Gets a SpaceMarine by ID.
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: getSpaceMarineById
       parameters:
         - name: id
@@ -124,8 +115,6 @@ paths:
         - SpaceMarine
       summary: Gets all SpaceMarine's.
       description: Gets all SpaceMarine's.
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: getAllSpaceMarine
       parameters:
         - name: size
@@ -179,8 +168,6 @@ paths:
         - SpaceMarine
       summary: Gets SpaceMarine where chapter is min.
       description: Gets SpaceMarine where chapter is min.
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: getMinimalChapterSpaceMarine
       responses:
           '200':
@@ -197,8 +184,6 @@ paths:
         - SpaceMarine
       summary: Gets all SpaceMarine's where the height value is less than the parameter.
       description: Gets all SpaceMarine's where the height value is less than the parameter.
-      servers: 
-        - url: http://spacemarine.swagger.io
       operationId: getLessHeightSpaceMarine
       parameters:
         - name: height
@@ -223,8 +208,6 @@ paths:
           - SpaceMarine
         summary: Gets all SpaceMarine's where the health value is less than the parameter.
         description: Gets all SpaceMarine's where the health value is less than the parameter.
-        servers: 
-          - url: http://spacemarine.swagger.io
         operationId: getLessHealthSpaceMarine
         parameters:
           - name: health
