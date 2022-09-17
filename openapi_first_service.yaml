@@ -1,0 +1,326 @@
+openapi: 3.0.3
+info:
+  title: SpaceMarine specification
+  version: 1.0.11
+servers:
+  - url: http://spacemarine.swagger.io
+  - url: http://spacemarine.swagger.io/starship
+tags:
+  - name: SpaceMarine
+    description: default operations with collection of SpaceMarine
+paths:
+  /spaceMaine:
+    put:
+      tags:
+        - SpaceMarine
+      summary: Update an existing SpaceMarine
+      description: Update an existing SpaceMarine by Id
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: updateSpaceMarine
+      requestBody:
+        description: Update an existent SpaceMarine in the collection
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SpaceMarine'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SpaceMarine'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: SpaceMarine not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - SpaceMarine
+      summary: Add a new SpaceMarine
+      description: Add a new SpaceMarine
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: addSpaceMarine
+      requestBody:
+        description: Create a new SpaceMarine in the collection
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SpaceMarine'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SpaceMarine'
+        '405':
+          description: Validation exception
+  /spaceMarine/{id}:
+    delete:
+      tags:
+        - SpaceMarine
+      summary: Delete SpaceMarine by ID.
+      description: Delete SpaceMarine by ID.
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: deleteSpaceMarineById
+      parameters:
+        - name: id
+          in: path
+          description: SpaceMarine ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+          '200':
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/SpaceMarine'
+          '400':
+            description: Invalid ID supplied
+          '404':
+            description: SpaceMarine not found
+    get:
+      tags:
+        - SpaceMarine
+      summary: Gets a SpaceMarine by ID.
+      description: Gets a SpaceMarine by ID.
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: getSpaceMarineById
+      parameters:
+        - name: id
+          in: path
+          description: SpaceMarine ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+          '200':
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/SpaceMarine'
+          '400':
+            description: Invalid ID supplied
+          '404':
+            description: SpaceMarine not found
+  /getAllSpaceMarine:
+    get:
+      tags:
+        - SpaceMarine
+      summary: Gets all SpaceMarine's.
+      description: Gets all SpaceMarine's.
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: getAllSpaceMarine
+      parameters:
+        - name: size
+          in: query
+          description: SpaceMarine ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: SpaceMarine ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: fields
+          style: deepObject
+          allowReserved: true
+          schema:
+            $ref: "#/components/schemas/SpaceMarine"
+        - in: query
+          name: sort
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - id
+                - name
+                - coordinates
+                - creationDate
+                - health
+                - height
+                - weaponType
+                - meleeWeapon
+                - chapter
+      responses:
+          '200':
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/definitions/ArrayOfSpaceMarine"
+          '404':
+            description: SpaceMarine's not found
+  /getSpaceMarine/chapter/min:
+    get:
+      tags:
+        - SpaceMarine
+      summary: Gets all SpaceMarine's where chapter is min.
+      description: Gets all SpaceMarine's where chapter is min.
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: getMinimalChapterSpaceMarine
+      responses:
+          '200':
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/definitions/ArrayOfSpaceMarine"
+          '404':
+            description: SpaceMarine's not found
+  /getSpaceMarines/height:
+    get:
+      tags:
+        - SpaceMarine
+      summary: Gets all SpaceMarine's where the height value is less than the parameter.
+      description: Gets all SpaceMarine's where the height value is less than the parameter.
+      servers: 
+        - url: http://spacemarine.swagger.io
+      operationId: getLessHeightSpaceMarine
+      parameters:
+        - name: height
+          in: query
+          required: true
+          description: "Parameter"
+          schema:
+            type: integer
+            format: int64
+      responses:
+          '200':
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/definitions/ArrayOfSpaceMarine"
+          '404':
+            description: SpaceMarine's not found
+  /getSpaceMarines/health:
+      get:
+        tags:
+          - SpaceMarine
+        summary: Gets all SpaceMarine's where the health value is less than the parameter.
+        description: Gets all SpaceMarine's where the health value is less than the parameter.
+        servers: 
+          - url: http://spacemarine.swagger.io
+        operationId: getLessHealthSpaceMarine
+        parameters:
+          - name: health
+            in: query
+            required: true
+            description: "Parameter"
+            schema:
+              type: integer
+              format: int64
+        responses:
+            '200':
+              description: Successful operation
+              content:
+                application/xml:
+                  schema:
+                    $ref: "#/definitions/ArrayOfSpaceMarine"
+            '404':
+              description: SpaceMarine's not found
+definitions:
+  ArrayOfSpaceMarine:
+    type: array
+    items:
+      $ref: '#/components/schemas/SpaceMarine'
+components:
+  schemas:
+    SpaceMarine:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1234567
+          minimum: 1
+          nullable: false
+        name:
+          type: string
+          example: 'Name'
+          minLength: 1
+          nullable: false
+        cooridinates:
+          $ref: '#/components/schemas/Coordinates'
+        creationDate:
+          type: string
+          example: '2021-03-23T16:43:32.010069453'
+          nullable: false
+        health:
+          type: integer
+          format: int64
+          example: 200
+          minimum: 1
+        height:
+          type: number
+          example: 34.23
+        weaponType:
+          $ref: '#/components/schemas/WeaponType'
+        meleeWeapon:
+          $ref: '#/components/schemas/MeleeWeapon'
+        chapter:
+          $ref: '#/components/schemas/Chapter'
+    Coordinates:
+      type: object
+      properties:
+        x:
+          type: number
+          example: 1.2
+          maximum: 286
+        y:
+          type: number
+          example: 1.3
+          minimum: -685
+          nullable: false
+    WeaponType:
+      type: string
+      nullable: true
+      enum: 
+        - BOLTGUN
+        - COMBI_PLASMA_GUN
+        - GRAV_GUN
+    MeleeWeapon:
+      type: string
+      nullable: true
+      enum: 
+        - POWER_SWORD
+        - CHAIN_AXE
+        - MANREAPER
+        - POWER_BLADE
+    Chapter:
+      type: object
+      nullable: false
+      properties:
+        name:
+          type: string
+          example: 'Name'
+          nullable: false
+          minLength: 1
+        world:
+          type: string
+          example: 'World'
+          nullable: true
