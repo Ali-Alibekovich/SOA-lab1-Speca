@@ -133,10 +133,10 @@ paths:
             format: int64
         - in: query
           name: fields
-          style: deepObject
-          allowReserved: true
-          schema:
-            $ref: "#/components/schemas/SpaceMarine"
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/SpaceMarine"
         - in: query
           name: sort
           schema:
