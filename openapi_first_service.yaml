@@ -165,7 +165,7 @@ paths:
   /getSpaceMarine/chapter/min:
     get:
       tags:
-        - SpaceMarine
+        - SpaceMarineAdditionalOperations
       summary: Gets SpaceMarine where chapter is min.
       description: Gets SpaceMarine where chapter is min.
       operationId: getMinimalChapterSpaceMarine
@@ -181,7 +181,7 @@ paths:
   /getSpaceMarines/height:
     get:
       tags:
-        - SpaceMarine
+        - SpaceMarineAdditionalOperations
       summary: Gets all SpaceMarine's where the height value is less than the parameter.
       description: Gets all SpaceMarine's where the height value is less than the parameter.
       operationId: getLessHeightSpaceMarine
@@ -205,7 +205,7 @@ paths:
   /getSpaceMarines/health:
       get:
         tags:
-          - SpaceMarine
+          - SpaceMarineAdditionalOperations
         summary: Gets all SpaceMarine's where the health value is less than the parameter.
         description: Gets all SpaceMarine's where the health value is less than the parameter.
         operationId: getLessHealthSpaceMarine
@@ -251,6 +251,7 @@ components:
         creationDate:
           type: string
           example: '2021-03-23T16:43:32.010069453'
+          format: date-time
           nullable: false
         health:
           type: integer
