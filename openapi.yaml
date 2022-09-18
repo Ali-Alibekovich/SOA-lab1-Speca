@@ -5,13 +5,15 @@ info:
 servers:
   - url: http://spacemarine.swagger.io
 tags:
-  - name: SpaceMarine
+  - name: SpaceMarineCRUD
     description: default operations with collection of SpaceMarine
+  - name: SpaceMarineAdditionalOperations
+    description: default additional operations with collection
 paths:
   /spaceMaine:
     put:
       tags:
-        - SpaceMarine
+        - SpaceMarineCRUD
       summary: Update an existing SpaceMarine
       description: Update an existing SpaceMarine by Id
       operationId: updateSpaceMarine
@@ -37,7 +39,7 @@ paths:
           description: Validation exception
     post:
       tags:
-        - SpaceMarine
+        - SpaceMarineCRUD
       summary: Add a new SpaceMarine
       description: Add a new SpaceMarine
       operationId: addSpaceMarine
@@ -60,7 +62,7 @@ paths:
   /spaceMarine/{id}:
     delete:
       tags:
-        - SpaceMarine
+        - SpaceMarineCRUD
       summary: Delete SpaceMarine by ID.
       description: Delete SpaceMarine by ID.
       operationId: deleteSpaceMarineById
@@ -86,7 +88,7 @@ paths:
             description: SpaceMarine not found
     get:
       tags:
-        - SpaceMarine
+        - SpaceMarineCRUD
       summary: Gets a SpaceMarine by ID.
       description: Gets a SpaceMarine by ID.
       operationId: getSpaceMarineById
@@ -112,7 +114,7 @@ paths:
   /getAllSpaceMarine:
     get:
       tags:
-        - SpaceMarine
+        - SpaceMarineCRUD
       summary: Gets all SpaceMarine's.
       description: Gets all SpaceMarine's.
       operationId: getAllSpaceMarine
@@ -152,7 +154,7 @@ paths:
                 - height
                 - weaponType
                 - meleeWeapon
-                - chapter
+                - chapterd
       responses:
           '200':
             description: Successful operation
@@ -175,7 +177,7 @@ paths:
             content:
               application/xml:
                 schema:
-                  $ref: "#/components/schemas/ArrayOfSpaceMarine"
+                  $ref: "#/components/schemas/SpaceMarine"
           '404':
             description: SpaceMarine's not found
   /getSpaceMarines/height:
@@ -199,7 +201,12 @@ paths:
             content:
               application/xml:
                 schema:
-                  $ref: "#/components/schemas/ArrayOfSpaceMarine"
+                  type: object
+                  properties:
+                    count:
+                      type: integer
+                  xml:
+                    name: 'Count'
           '404':
             description: SpaceMarine's not found
   /getSpaceMarines/health:
