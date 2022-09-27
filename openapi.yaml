@@ -59,6 +59,59 @@ paths:
                 $ref: '#/components/schemas/SpaceMarine'
         '405':
           description: Validation exception
+    get:
+      tags:
+        - SpaceMarineCRUD
+      summary: Gets all SpaceMarine's.
+      description: Gets all SpaceMarine's.
+      operationId: getAllSpaceMarine
+      parameters:
+        - name: size
+          in: query
+          description: SpaceMarine ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: SpaceMarine ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: fields
+          content:
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/SpaceMarine"
+        - in: query
+          name: sort
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - id
+                - name
+                - coordinates
+                - creationDate
+                - health
+                - height
+                - weaponType
+                - meleeWeapon
+                - chapterd
+      responses:
+          '200':
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/ArrayOfSpaceMarine"
+          '404':
+            description: SpaceMarine's not found
+
   /spacemarines/{id}:
     delete:
       tags:
@@ -112,61 +165,8 @@ paths:
             description: Invalid ID supplied
           '404':
             description: SpaceMarine not found
-  /spacemarines/get-all-spacemarines:
-    get:
-      tags:
-        - SpaceMarineCRUD
-      summary: Gets all SpaceMarine's.
-      description: Gets all SpaceMarine's.
-      operationId: getAllSpaceMarine
-      parameters:
-        - name: size
-          in: query
-          description: SpaceMarine ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: page
-          in: query
-          description: SpaceMarine ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - in: query
-          name: fields
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/SpaceMarine"
-        - in: query
-          name: sort
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - id
-                - name
-                - coordinates
-                - creationDate
-                - health
-                - height
-                - weaponType
-                - meleeWeapon
-                - chapterd
-      responses:
-          '200':
-            description: Successful operation
-            content:
-              application/xml:
-                schema:
-                  $ref: "#/components/schemas/ArrayOfSpaceMarine"
-          '404':
-            description: SpaceMarine's not found
-  /spacemarines/chapter/min:
-    get:
+  /spacemarines/chapters/min:
+    post:
       tags:
         - SpaceMarineAdditionalOperations
       summary: Gets SpaceMarine where chapter is min.
@@ -181,8 +181,8 @@ paths:
                   $ref: "#/components/schemas/SpaceMarine"
           '404':
             description: SpaceMarine's not found
-  /spacemarines/height:
-    get:
+  /spacemarines/{height}:
+    post:
       tags:
         - SpaceMarineAdditionalOperations
       summary: Gets count of SpaceMarine's where the height value is less than the parameter.
@@ -190,7 +190,7 @@ paths:
       operationId: getLessHeightSpaceMarine
       parameters:
         - name: height
-          in: query
+          in: path
           required: true
           description: "Parameter"
           schema:
@@ -210,8 +210,8 @@ paths:
                     name: 'Count'
           '404':
             description: SpaceMarine's not found
-  /spacemarines/health:
-      get:
+  /spacemarines/{health}:
+      post:
         tags:
           - SpaceMarineAdditionalOperations
         summary: Gets all SpaceMarine's where the health value is less than the parameter.
@@ -219,7 +219,7 @@ paths:
         operationId: getLessHealthSpaceMarine
         parameters:
           - name: health
-            in: query
+            in: path
             required: true
             description: "Parameter"
             schema:
