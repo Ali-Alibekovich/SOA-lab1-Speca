@@ -41,7 +41,7 @@ paths:
           '400':
             description: Invalid ID supplied
   /{starship-id}/unload-all:
-    delete:
+    post:
       tags:
         - SpaceMarine
       summary: Disembark all paratroopers from SpaceCraft by ID.
