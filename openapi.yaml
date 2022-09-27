@@ -10,12 +10,12 @@ tags:
   - name: SpaceMarineAdditionalOperations
     description: default additional operations with collection
 paths:
-  /spaceMaine:
+  /spacemarines:
     put:
       tags:
         - SpaceMarineCRUD
       summary: Update an existing SpaceMarine
-      description: Update an existing SpaceMarine by Id
+      description: Update an existing SpaceMarine
       operationId: updateSpaceMarine
       requestBody:
         description: Update an existent SpaceMarine in the collection
@@ -59,7 +59,7 @@ paths:
                 $ref: '#/components/schemas/SpaceMarine'
         '405':
           description: Validation exception
-  /spaceMarine/{id}:
+  /spacemarines/{id}:
     delete:
       tags:
         - SpaceMarineCRUD
@@ -112,7 +112,7 @@ paths:
             description: Invalid ID supplied
           '404':
             description: SpaceMarine not found
-  /getAllSpaceMarine:
+  /spacemarines/get-all-spacemarines:
     get:
       tags:
         - SpaceMarineCRUD
@@ -165,7 +165,7 @@ paths:
                   $ref: "#/components/schemas/ArrayOfSpaceMarine"
           '404':
             description: SpaceMarine's not found
-  /getSpaceMarine/chapter/min:
+  /spacemarines/chapter/min:
     get:
       tags:
         - SpaceMarineAdditionalOperations
@@ -181,12 +181,12 @@ paths:
                   $ref: "#/components/schemas/SpaceMarine"
           '404':
             description: SpaceMarine's not found
-  /getSpaceMarines/height:
+  /spacemarines/height:
     get:
       tags:
         - SpaceMarineAdditionalOperations
-      summary: Gets all SpaceMarine's where the height value is less than the parameter.
-      description: Gets all SpaceMarine's where the height value is less than the parameter.
+      summary: Gets count of SpaceMarine's where the height value is less than the parameter.
+      description: Gets count of SpaceMarine's where the height value is less than the parameter.
       operationId: getLessHeightSpaceMarine
       parameters:
         - name: height
@@ -210,7 +210,7 @@ paths:
                     name: 'Count'
           '404':
             description: SpaceMarine's not found
-  /getSpaceMarines/health:
+  /spacemarines/health:
       get:
         tags:
           - SpaceMarineAdditionalOperations
